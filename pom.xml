@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>cz.tomek.anki</groupId>
+	<artifactId>tomkre-maven-plugin</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>maven-plugin</name>
+
+	<url>https://www.tomkre.cz</url>
+
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<author>tomkre</author>
+		<failOnMissingWebXml>false</failOnMissingWebXml>
+		<project.scm.id>git</project.scm.id>
+	</properties>
+	
+	<scm>
+		<connection>scm:git:https://github.com/tomkre/maven-app.git</connection>
+		<developerConnection>scm:git:https://github.com/tomkre/maven-app.git</developerConnection>
+		<url>https://github.com/tomkre/maven-app</url>
+    <tag>HEAD</tag>
+  </scm>
+	
+	<distributionManagement>
+		<repository>
+			<id>nexus-releases</id>
+			<name>Maven releases</name>
+			<url>http://localhost:8081/repository/maven-releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<name>Maven snapshots</name>
+			<url>http://localhost:8081/repository/maven-snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+	
+
+	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.16</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+			<version>3.6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugin-tools</groupId>
+			<artifactId>maven-plugin-annotations</artifactId>
+			<version>3.6.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-project</artifactId>
+			<version>2.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	
+	<profiles>
+		<profile>
+			<id>msg</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.8</version>
+						<executions>
+							<execution>
+								<id>clean</id>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<phase>clean</phase>
+								<configuration>
+									<target>
+										<echo>runnig clean phase</echo>
+									</target>
+								</configuration>
+							</execution>
+							<execution>
+								<id>validate</id>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<phase>validate</phase>
+								<configuration>
+									<target>
+										<echo>runnig validate phase</echo>
+									</target>
+								</configuration>
+							</execution>
+							<execution>
+								<id>generate-sources</id>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<phase>generate-sources</phase>
+								<configuration>
+									<target>
+										<echo>runnig generate-sources phase</echo>
+									</target>
+								</configuration>
+							</execution>
+							<execution>
+								<id>generate-resources</id>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<phase>generate-resources</phase>
+								<configuration>
+									<target>
+										<echo>runnig generate-resources phase</echo>
+									</target>
+								</configuration>
+							</execution>
+							<execution>
+								<id>process-sources</id>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<phase>process-sources</phase>
+								<configuration>
+									<target>
+										<echo>runnig generate-sources phase</echo>
+									</target>
+								</configuration>
+							</execution>
+							<execution>
+								<id>process-resources</id>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<phase>process-resources</phase>
+								<configuration>
+									<target>
+										<echo>runnig process-resources phase</echo>
+									</target>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<build>
+		<finalName>maven-app</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.7.1</version>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<licenses>
+		<license>
+			<name>mvn</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	
+	<mailingLists>
+		<mailingList>
+			<name>newsletter</name>
+			<subscribe>subscribe@tomkre.cz</subscribe>
+			<unsubscribe>unsubscribe@tomkre.cz</unsubscribe>
+			<post>post@tomkre.cz</post>
+		</mailingList>
+	</mailingLists>
+	
+	<developers>
+		<developer>
+			<id>tomkre</id>
+			<name>Tom Krejcar</name>
+			<email>tom.krejcar@gmail.com</email>
+			<roles>
+				<role>Architect</role>
+				<role>Developer</role>
+			</roles>
+			<properties>
+				<active>true</active>
+				<langs>cz,en,de</langs>
+			</properties>
+		</developer>
+	</developers>
+	
+</project>

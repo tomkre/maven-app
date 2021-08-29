@@ -1,0 +1,1 @@
+<h1>Hello, Tom! from maven-app</h1>
